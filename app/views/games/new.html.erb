@@ -1,13 +1,21 @@
-<h2>Welcome to the longest word-game</h2>
+<div class="container">
+<h2>New game</h2>
 
-<h3>Here is your grid:</h3>
-<%= @letters %></div>
+  <div class="letters mb-3 d-flex">
+    <% @letters.each do |letter| %>
+    <div><%= letter %></div>
+    <% end %>
+  </div>
 
-
-<p>What is the longest word you can find?</p>
-<form action="/score" method="post" data-turbo="false">
-  <input type="text" name="word" value="<%= params[:word] %>">
-  <input type="submit" class="blue-btn" value="Play">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag :grid, @letters %>
-</form>
+  <div class="user-input">
+    <p>What is the longest word you can find?</p>
+    <form action="/score" method="post" data-turbo="false">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :grid, @letters %>
+      <div class="input-form mb-3">
+      <input type="text" name="word" value="<%= params[:word] %>">
+      <input type="submit" class="blue-btn" value="Play">
+      </div>
+    </form>
+  </div>
+</div>
